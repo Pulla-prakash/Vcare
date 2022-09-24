@@ -43,31 +43,55 @@
 								<img src="/images/Icons/app.png" alt=" icon" class="img-fluid">
 								<a href="/hospital/hospitalList">Hospital</a>
 							</div>
-							<!-- <div class="sidebar-item">
-								<img src="/images/Icons/pa.png" alt="icon" class="img-fluid">
-								<a th:href="@{/Dephome}">Department</a>
-							</div> -->
-							<!-- <div class="sidebar-item">
+							
+							<div class="sidebar-item">
 								<img src="/images/Icons/cal.png" alt="icon" class="img-fluid">
-								<a th:href="@{/Drlist}">Doctor</a>
+								<a th:href="@{/doctor/Drlist}">Doctor</a>
 							</div>
 							<div class="sidebar-item">
 								<img src="/images/Icons/profile.png" alt="icon" class="img-fluid">
-								<a th:href="@{/patientsList}">Patient</a>
-							</div> -->
-							<div class="sidebar-item">
-								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid">
-								<a th:href="@{/page/service}" class="active">Services</a>
+								<a th:href="@{/patient/patientsList}">Patient</a>
 							</div>
-							<!-- <div class="sidebar-item">
-								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid">
-								<a th:href="@{/insurancelist}" class="active">Insurances</a>
-							</div> -->
 							<div class="sidebar-item">
-								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid">
-								<a th:href="@{/news/newstable}" class="active">News</a>
+								<img src="/images/Icons/profile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Appointment}">Appointments</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/profile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/Insurance/insurancelist/{adminid}(adminid=${session.AdminId})}">Insurance</a>
 							</div>
 
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/news/newstable}">News</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid">
+								<a th:href="@{/SocialNetwork/networkList}">Social Network</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/prescription.jpg" alt="icon" class="img-fluid" />
+								<a th:href="@{/payments}">Payments</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/prescription.jpg" alt="icon" class="img-fluid" />
+								<a th:href="@{/Aboutus/addabout}">About Us</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/prescription.jpg" alt="icon" class="img-fluid" />
+								<a th:href="@{/popularoffer/offerlist}">Offer services</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/prescription.jpg" alt="icon" class="img-fluid" />
+								<a th:href="@{/laboratory/laboratoryList}">Laboratory</a>
+							</div>
 						</div>
 					</section>
 					<!-- sidebar end -->
@@ -79,7 +103,7 @@
 						<div class="page-heading">
 							<h1>Ambulance List</h1>
 					<div align="right">		
-		<a th:href="@{/addAmbulance/{branchId}(branchId=${hbid})}" class="img-fluid">Add Ambulance</a>
+		<a th:href="@{/Ambulance/addAmbulance/{branchId}(branchId=${hbid})}" class="img-fluid">Add Ambulance</a>
 </div>
 							
 						</div>
@@ -107,17 +131,17 @@
 										<td  th:text="${ambObj.ambulanceType}">
 										</td>
 										<td  th:text="${ambObj.vechileType}"></td>
-										<td  th:text="${ambObj.vechilenumber}">
+										<td  th:text="${ambObj.vechileNumber}">
 										</td>
 										<td  th:text="${ambObj.charges}"></td>
 									<td><select name="table"
 											onchange="location = this.value;">
 											<option>Action</option>
 												<option
-													th:value="@{/editAmbulance/{id}(id=${ambObj.ambulanceId})}">edit
+													th:value="@{/Ambulance/editAmbulance/{ambulanceid}(ambulanceid=${ambObj.ambulanceId})}">edit
 												</option>
 												<option
-													th:value="@{/deleteAmbulance/{id}(id=${ambObj.ambulanceId})}">Delete</option>
+													th:value="@{/Ambulance/deleteAmbulance/{ambulanceid}(ambulanceid=${ambObj.ambulanceId})}">Delete</option>
 												<!-- <option th:value="@{/empid/{id}(id=${empObj.employeeId})}">Generate IDcard</option> -->
 										</select></td>
 									</tr>

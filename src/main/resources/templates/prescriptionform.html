@@ -46,21 +46,24 @@
 								<h4>Dashboard</h4>
 							</div>
 							<div class="sidebar-item">
-								<img src="../images/Icons/app.png" alt=" icon" class="img-fluid" />
-								<a th:href="@{/appointmentlist/{did}(did=${session.DocId})}">Appointments</a>
-							</div>
-							
-							<div class="sidebar-item">
-								<img src="../images/Icons/cal.png" alt="icon" class="img-fluid" />
-								<a th:href="@{/availabilityList/{id}(id=${session.DocId})}">Availability</a>
+								<img src="/images/Icons/app.png" alt=" icon" class="img-fluid" />
+								<a th:href="@{/appointment/appointmentlist/{did}(did=${session.DocId})}">Appointments</a>
 							</div>
 							<div class="sidebar-item">
-								<img src="../images/Icons/profile.png" alt="icon" class="img-fluid" />
-								<a th:href="@{/updatedDoctorProfile/{did}(did=${session.DocId})}">Doctor Profile</a>
+								<img src="/images/Icons/cal.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/DoctorAvailability/availabilityList/{doctorId}(doctorId=${session.DocId})}">Availability</a>
 							</div>
 							<div class="sidebar-item">
-								<img src="../images/Icons/prescription.jpg" alt="icon" class="img-fluid" />
-								<a th:href="@{/prescription/{did}(did=${session.DocId})}">Patients Prescription</a>
+								<img src="/images/Icons/profile.png" alt="icon" class="img-fluid" />
+								<a th:href="@{/doctor/updatedDoctorProfile/{did}(did=${session.DocId})}">Doctor Profile</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/prescription.jpg" alt="icon" class="img-fluid" />
+								<a th:href="@{/Prescription/prescriptionlist/{doctorId}(doctorId=${session.DocId})}">Patients Prescription</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/prescription.jpg" alt="icon" class="img-fluid" />
+								<a th:href="@{/doctor/payment/{docId}(docId=${session.DocId})}">Payments</a>
 							</div>
 						</div>
 					</section>
@@ -83,7 +86,7 @@
 
 						<div class="avaliability-box">
 							<div class="form-box">
-								<form id="prescription_form" th:action="@{/saveprescription}" th:object="${prescriptionobj}"
+								<form id="prescription_form" th:action="@{/Prescription/saveprescription}" th:object="${prescriptionobj}"
 									method="post" novalidate>
 									
 									<div class="row">
@@ -174,18 +177,41 @@
 												required="required" th:minlength="1" th:maxlength="100">
 
 										</div>
-
+									</div>
+									<div class="row">
+																				
+										<div class="col-md-3">
+											<label>Select Lab Tests</label> 
+											<input th:if="${prescription=='null'}"
+												type="checkbox" th:each="test,count:${testlist}"
+												name="labTestId" id="labTestId"
+												th:text="${test.testName}"
+												th:value="${test.testId}"/>
+											<input
+												type="checkbox" th:each="test,count:${selectedlist}"
+												th:if="${prescription}=='notnull'"
+												name="labTestId" id="labTestId"
+												th:text="${test.testName}"
+												th:value="${test.testId}" checked/>
+											<input th:if="${prescription}=='notnull'" th:each="total:${labtestlist}"
+												type="checkbox" 
+												name="labTestId" id="labTestId"
+												th:text="${total.testName}"
+												th:value="${total.testId}"/>
+											
+										</div>
 										
 										<div class="col-md-9+">
 										<label> Prescription</label>
 										
 										<textarea  id="prescriptions" contenteditable="true"
 											class="form-control" name="prescription"  th:value="*{prescription}"
-											required="required" minlength="1" maxlength="500" maxwidth="200"
+											required="required" minlength="1" maxlength="10" maxwidth="10"
 											th:utext="*{prescription}"></textarea>
 
 									</div>
 									</div>
+
 
 									<div class="row">
 

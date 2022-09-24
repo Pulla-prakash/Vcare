@@ -21,7 +21,7 @@
 		<div class="container-fluid">
 			<div class="header-box">
 				<h4>Vcare</h4>
-				<a href="/">LogOut</a>
+				<a th:href="@{/logout}">LogOut</a>
 			</div>
 		</div>
 	</header>
@@ -38,41 +38,45 @@
 							</div>
 										<div class="sidebar-item">
 								<img src="/images/Icons/app.png" alt=" icon" class="img-fluid" />
-								<a th:href="@{/bookAppointment/{id}(id=${session.pId})}">Appointments</a>
+								<a th:href="@{/appointment/bookAppointment/{id}(id=${session.pId})}">Appointments</a>
 							</div>
-
-
 							<div class="sidebar-item">
-								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
-								<a th:href="@{/patientprofile/{id}(id=${session.pId})}">Patient
+								<img src="/images/Icons/pprofile.png" alt="icon"
+									class="img-fluid" /> <a
+									th:href="@{/patient/patientprofile/{id}(id=${session.pId})}">Patient
 									Profile</a>
 							</div>
 							<div class="sidebar-item">
-								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
-								<a th:href="@{/med/medhistory/{id}(id=${session.pId})}">Medical
+								<img src="/images/Icons/pprofile.png" alt="icon"
+									class="img-fluid" /> <a
+									th:href="@{/med/medhistory/{id}(id=${session.pId})}">Medical
 									History</a>
 							</div>
-
 							<div class="sidebar-item">
-								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
-								<a th:href="@{/med/view/{id}(id=${session.pId})}">View Reports</a>
+								<img src="/images/Icons/pprofile.png" alt="icon"
+									class="img-fluid" /> <a
+									th:href="@{/med/view/{id}(id=${session.pId})}">View Reports</a>
 							</div>
-							
 							<div class="sidebar-item">
-                                <img src="../images/Icons/cal.png" alt="icon" class="img-fluid">
-                                <a th:href="@{/patientappointments/{pid}(pid=${session.pId})}">My Appointments</a>
-                            </div>
-
-							<div class="sidebar-item">
-								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid" />
-								<a th:href="@{/acceptpres/{pid}(pid=${session.pId})}">View Prescription</a>
+								<img src="/images/Icons/cal.png" alt="icon" class="img-fluid">
+								<a th:href="@{/appointment/patientappointments/{pid}(pid=${session.pId})}">My
+									Appointments</a>
 							</div>
-							
 							<div class="sidebar-item">
-                                <img src="../images/Icons/cal.png" alt="icon" class="img-fluid">
-                                <a th:href="@{/Doctorlist/{pid}(pid=${session.pId})}">Doctors List</a>
-                            </div>
-
+								<img src="/images/Icons/pprofile.png" alt="icon"
+									class="img-fluid" /> <a
+									th:href="@{/Prescription/prescriptionlistbypatient/{patientId}(patientId=${session.pId})}">View
+									Prescription</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/cal.png" alt="icon" class="img-fluid">
+								<a th:href="@{/doctor/Doctorlist/{pid}(pid=${session.pId})}">Doctors
+									List</a>
+							</div>
+							<div class="sidebar-item">
+								<img src="/images/Icons/cal.png" alt="icon" class="img-fluid">
+								<a th:href="@{/labTest/disTest/{pid}(pid=${session.pId})}">Lab Test</a>
+							</div>
 							
 						</div>
 					</section>
@@ -96,7 +100,7 @@
 
 						<div class="avaliability-box">
 							<div class="form-box">
-								<form id="appointment_form" th:action="@{/saveappointment/{did}(did=${did})}" th:object="${appointment}"
+								<form id="appointment_form" th:action="@{/appointment/saveappointment/{did}(did=${doctor.doctorId})}" th:object="${appointment}"
 									method="post">
 									
 									<input type="hidden" class="form-control" id="hospitalBranchId" name="hospitalBranchId"
@@ -106,26 +110,26 @@
 										th:value="*{appointmentId}">
 
 									<input type="hidden" class="form-control" id="patient" name="patient"
-										th:value="${pid}" th:minlength="1" th:maxlength="100"
+										th:value="${patient.patientId}" th:minlength="1" th:maxlength="100"
 										placeholder="Enter Your Name" required>
 									<input type="hidden" class="form-control" id="doctor" name="doctor"
-										th:value="${did}" th:minlength="1" th:maxlength="100"
+										th:value="${doctor.doctorId}" th:minlength="1" th:maxlength="100"
 										placeholder="Enter Your Name" required>
 									<div class="row">
 										<div class="col-md-4">
 											<label for="patientName">Name</label> <input type="text"
-												class="form-control" name="patientName" th:value="${patientName}"
+												class="form-control" name="patientName" th:value="${patient.firstName}+' '+${patient.lastName}"
 												th:minlength="1" th:maxlength="100" placeholder="Enter Your Name"
 												required>
 										</div>
 										<div class="col-md-4">
 											<label for="patientName">Age</label> <input type="number"
-												class="form-control" name="patientAge" th:value="${patientage}"
+												class="form-control" name="patientAge" th:value="${patient.patientAge}"
 												th:minlength="1" th:maxlength="100" required>
 										</div>
 										<div class="col-md-4">
 											<label for="patientName">Gender</label> <input type="text"
-												class="form-control" name="patientGender" th:value="${patientgender}"
+												class="form-control" name="patientGender" th:value="${patient.patientGender}"
 												th:minlength="1" th:maxlength="100" required>
 										</div>
 										</div>
@@ -133,7 +137,7 @@
 										<div class="col-md-4">
 											<label for="patientName">Contanct Number</label> <input type="tel"
 												class="form-control" name="patientMobile" id="patientMobile"
-												th:value="${patientmobile}" th:minlength="1" th:maxlength="15"
+												th:value="${patient.patientMobile}" th:minlength="1" th:maxlength="15"
 												placeholder="" required>
 
 											<script type="text/javascript">
@@ -202,13 +206,13 @@
 										</div>
 										<div class="col-md-4">
 											<label for="loc">Doctor Name</label> <input type="text" class="form-control"
-												name="doctorName" th:value="${doctorName}" required="required"
+												name="doctorName" th:value="${doctor.doctorName}" required="required"
 					 							th:minlength="1" th:maxlength="100" readonly>
 										</div>
 									
 										<div class="col-md-4">
 											<label for="name">Fee</label> <input type="number" class="form-control"
-												name="ConsultantFee" th:value="${doctorFee}" required="required"
+												name="ConsultantFee" th:value="${doctor.doctorFee}" required="required"
 												th:minlength="1" th:maxlength="5" readonly>
 
 										</div>

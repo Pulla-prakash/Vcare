@@ -49,11 +49,11 @@
 							
 							<div class="sidebar-item">
 								<img src="/images/Icons/cal.png" alt="icon" class="img-fluid">
-								<a th:href="@{/Drlist}">Doctor</a>
+								<a th:href="@{/doctor/Drlist}">Doctor</a>
 							</div>
 							<div class="sidebar-item">
 								<img src="/images/Icons/profile.png" alt="icon" class="img-fluid">
-								<a th:href="@{/patientsList}">Patient</a>
+								<a th:href="@{/patient/patientsList}">Patient</a>
 							</div>
 							<div class="sidebar-item">
 								<img src="/images/Icons/profile.png" alt="icon" class="img-fluid">
@@ -62,7 +62,7 @@
 							
 							<div class="sidebar-item">
 								<img src="/images/Icons/profile.png" alt="icon" class="img-fluid">
-								<a th:href="@{/insurancelist/{id}(id=${session.AdminId})}">Insurance</a>
+								<a th:href="@{/Insurance/insurancelist/{adminid}(adminid=${session.AdminId})}">Insurance</a>
 							</div>
 
 							
@@ -73,10 +73,28 @@
 							
 							<div class="sidebar-item">
 								<img src="/images/Icons/pprofile.png" alt="icon" class="img-fluid">
-								<a th:href="@{/network}">Social Network</a>
+								<a th:href="@{/SocialNetwork/networkList}">Social Network</a>
 							</div>
-
-
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/prescription.jpg" alt="icon" class="img-fluid" />
+								<a th:href="@{/payments}">Payments</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/prescription.jpg" alt="icon" class="img-fluid" />
+								<a th:href="@{/Aboutus/addabout}">About Us</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/prescription.jpg" alt="icon" class="img-fluid" />
+								<a th:href="@{/popularoffer/offerlist}">Offer services</a>
+							</div>
+							
+							<div class="sidebar-item">
+								<img src="/images/Icons/prescription.jpg" alt="icon" class="img-fluid" />
+								<a th:href="@{/laboratory/laboratoryList}">Laboratory</a>
+							</div>
 						</div>
 					</section>
 					<!-- sidebar end -->
